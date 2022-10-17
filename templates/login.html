@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body{
+            font: 14px sans-serif;
+            text-align: center;
+         }
+        .wrapper{
+            width: 360px; padding: 20px;
+        }
+        p{ text-align: center; }
+        h1{ text-align: center; }
+    </style>
+</head>
+<body>
+    <center>
+    <div class="wrapper">
+        <p>*Attendance report access is protected with a password authentication.*</p>
+        <h1>Type the password to gain access</h1>
+
+
+        <form action="/inputs" method="get" >
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <br><br>
+            <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Login" onclick="return check(this.form)">
+            </div>
+        </form>
+    </div>
+    </center>
+</body>
+</html>
+<script language="javascript">
+                function check(form)
+                {
+
+                    if(form.password.value == "root")
+                    {
+                        return location.href="input.html";
+                    }
+                    else
+                    {
+                        alert("Error: Wrong Password")
+                        return false;
+                    }
+                }
+</script>

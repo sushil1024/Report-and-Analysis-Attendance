@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input</title>
+    <style>
+        input[type=text], select, textarea {
+            width: 1%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        input[type=number], select, textarea {
+            width: 10%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <form action="/inputs" method="post">
+            <br>
+            Roll Number = <input type="number" name="studentrollno" required/> <br><br>
+            Email the data?(y/n) = <input type="text" name="mailch" required/> <br><br>
+            <input type="submit" name="Submit" value="Submit"/>
+        </form>
+<!--       <iframe src="/results" width="1200" height="200"></iframe>   -->
+        <br><br>
+        <a href="/">Home</a>
+    </center>
+    <h1>INSTRUCTIONS:</h1>
+    <p>-The details about "Roll Number" and "Email the data?" should be submitted in the above boxes.</p>
+    <p>-You can apply for email by giving input as 'y'/'n'(Yes/No).</p>
+    <p>-After putting roll number and option(y/n) for email, the data for the specific roll number will be sent to Email ID owned by the person with that roll number.</p>
+    <p>-The data will then be converted into pdf file and will be sent after clicking submit.</p>
+</body>
+</html>
