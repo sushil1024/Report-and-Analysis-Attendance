@@ -7,7 +7,7 @@
 <body>
   <form action="/action.php">
     <label for="stuname">Name*:</label><br>
-    <input type="text" id="stuname" placeholder="Rahul Singh" required><br><br>
+    <input type="text" id="stuname" name="stuname" placeholder="Rahul Singh" required><br><br>
 
     <fieldset>
         <legend>Gender*:</legend>
@@ -19,25 +19,26 @@
     <br><br>
 
     <label for="country">Country:</label><br>
-    <input type="text" id="country"><br><br>
+    <input type="text" name="country" id="country"><br><br>
 
     <label for="contactno">Contact No:</label><br>
-    <input type="number" id="contactno"><br><br>
+    <input type="number" name="contactno" id="contactno"><br><br>
 
     <label for="city">City:</label><br>
-    <input type="text" id="city"><br><br>
+    <input type="text" name="city" id="city"><br><br>
 
     <label for="age">Age*:</label><br>
-    <input type="number" id="age" placeholder="18" required><br><br>
+    <input type="number" name="age" id="age" placeholder="18" required><br><br>
 
     <label for="dob">Date of Birth*:</label><br>
-    <input type="date" id="dob" required><br><br>
+    <input type="date" name="dob" id="dob" required><br><br>
 
     <label for="emailid">Email ID*:</label><br>
-    <input type="text" id="emailid" placeholder="example@example.com" required><br><br>
+    <input type="text" name="emailid" id="emailid" placeholder="example@example.com" required><br><br>
 
     <label for="attend">Attendance*:</label><br>
-    <input type="number" id="attend" maxlength="90" required><br><br>
+    <input type="number" name="attend" id="attend" maxlength="90" required><br><br>
+
 
     <input type="submit" value="Submit">
   </form>

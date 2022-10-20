@@ -22,6 +22,21 @@ def login():
     return render_template("login.html")
 
 
+@app.route("/entry", methods=['GET', 'POST'])
+def entry():
+    if request.method == 'POST':
+        stuname = request.form['stuname']
+        gender = request.form['gender']
+        country = request.form['country']
+        contactno = request.form['contactno']
+        city = request.form['city']
+        age = request.form['age']
+        dob = request.form['dob']
+        emailid = request.form['emailid']
+
+    return render_template("entry.html")
+
+
 # input page to input roll number of the candidate
 @app.route("/inputs", methods=['GET', 'POST'])
 def inputs():
@@ -32,7 +47,7 @@ def inputs():
         mailch = request.form['mailch']
 
         # taken inputs will be passed to another function for further process
-        from searchdata import inputnmail
+        from searchdata import search
         inputnmail(studentrollno, mailch)
 
     return render_template("input.html")
