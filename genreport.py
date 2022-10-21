@@ -34,6 +34,8 @@ def genpdf(stuname, rollno, dob, age, gender, residence, lecs):
     # conversion to string type to be printed into the pdf
     rollno = str(rollno)
     lecs = str(lecs)
+    dob = str(dob)
+    age = str(age)
 
     pdf = FPDF()
     pdf.add_page()

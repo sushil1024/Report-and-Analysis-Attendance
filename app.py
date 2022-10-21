@@ -1,13 +1,24 @@
-
-# Document: Attendance Report and Analytics
-# Created on: October 06, 2022, 9:00:00 PM
-# Last Updated: October 06, 2022, 9:00:00 PM
+# Document: Report and Analysis of Attendance
+# Created on: October 01, 2022, 9:00:00 PM
+# Last Updated: October 21, 2022, 9:00:00 PM
 # Author: Sushil Waghmare
 
 
 from flask import Flask, render_template, request
+import mysql.connector
+
 
 app = Flask(__name__)
+
+
+con = mysql.connector.connect(
+    user="root",
+    password="r00t",
+    host="localhost",
+    database="fynd",
+)
+
+cur = con.cursor()
 
 
 # the home page
@@ -34,6 +45,9 @@ def entry():
         dob = request.form['dob']
         emailid = request.form['emailid']
 
+        cur.execute(f"INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, '{stuname}', '{gender}', {country}, {city}, {contactno}, {age}, '{dob}', '{emailid}', 30 FROM STUDENTS ORDER BY STUID DESC LIMIT 1;")
+        con.commit()
+
     return render_template("entry.html")
 
 
@@ -48,7 +62,7 @@ def inputs():
 
         # taken inputs will be passed to another function for further process
         from searchdata import search
-        inputnmail(studentrollno, mailch)
+        search(studentrollno, mailch)
 
     return render_template("input.html")
 
