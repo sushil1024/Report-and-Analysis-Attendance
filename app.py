@@ -45,7 +45,7 @@ def entry():
         dob = request.form['dob']
         emailid = request.form['emailid']
 
-        cur.execute(f"INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, '{stuname}', '{gender}', {country}, {city}, {contactno}, {age}, '{dob}', '{emailid}', 30 FROM STUDENTS ORDER BY STUID DESC LIMIT 1;")
+        cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s, 30 FROM STUDENTS ORDER BY STUID DESC LIMIT 1;", stuname, gender, country, city, contactno, age, dob, emailid)
         con.commit()
 
     return render_template("entry.html")
