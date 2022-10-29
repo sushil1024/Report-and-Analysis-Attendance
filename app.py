@@ -10,7 +10,7 @@ from datetime import datetime
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'sush1024'
+app.config['SECRET_KEY'] = 'sushil1024'
 
 
 con = mysql.connector.connect(
