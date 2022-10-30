@@ -29,16 +29,15 @@ def search(roll, mailch):
 
         stuname = studata[0][2]
         roll = studata[0][1]
-        dob = studata[0][8]
         age = studata[0][7]
         gender = studata[0][3]
         residence = f"{studata[0][5]} {studata[0][4]}"
-        lecs = studata[0][10]
-        emailid = studata[0][9]
+        lecs = studata[0][9]
+        emailid = studata[0][8]
 
         # making a report pdf by taking some data from above
         from genreport import genpdf
-        genpdf(stuname, roll, dob, age, gender, residence, lecs)
+        genpdf(stuname, roll, age, gender, residence, lecs)
 
         # sends the pdf file to the specified email id of the candidate
         from mailto import sendmail

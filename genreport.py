@@ -4,7 +4,7 @@ from fpdf import FPDF
 
 
 # function which take some values as parameters from 'searchdata.py' to make a pdf file
-def genpdf(stuname, rollno, dob, age, gender, residence, lecs):
+def genpdf(stuname, rollno, age, gender, residence, lecs):
 
     # make pie chart
     from genchart import makechart
@@ -34,7 +34,7 @@ def genpdf(stuname, rollno, dob, age, gender, residence, lecs):
     # conversion to string type to be printed into the pdf
     rollno = str(rollno)
     lecs = str(lecs)
-    dob = str(dob)
+    # dob = str(dob)
     age = str(age)
 
     pdf = FPDF()
@@ -51,8 +51,8 @@ def genpdf(stuname, rollno, dob, age, gender, residence, lecs):
     pdf.ln()
     pdf.cell(40, 10, "Roll No: " + rollno)
     pdf.ln()
-    pdf.cell(40, 10, "Date of Birth: " + dob)
-    pdf.ln()
+    # pdf.cell(40, 10, "Date of Birth: " + dob)
+    # pdf.ln()
     pdf.cell(40, 10, "Age: " + age)
     pdf.ln()
     pdf.cell(40, 10, "Gender: " + gender)

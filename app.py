@@ -49,10 +49,9 @@ def entry():
         contactno = request.form['contactno']
         city = request.form['city']
         age = request.form['age']
-        dob = datetime.datetime.strftime(request.form['dob'], '%Y-%m-%d')
         emailid = request.form['emailid']
 
-        cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, DATE_FORMAT(%s, '%d %M %Y'), %s, 30 FROM STUDENTS ORDER BY STUID DESC LIMIT 1;", (stuname, gender, country, city, contactno, age, dob, emailid))
+        cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s FROM STUDENTS ORDER BY STUID DESC LIMIT 1;", (stuname, gender, country, city, contactno, age, emailid))
         con.commit()
 
 
