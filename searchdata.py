@@ -13,7 +13,7 @@ cur = con.cursor()
 # input function to process inputs given by the user
 def search(roll, mailch):
 
-    cur.execute(f"SELECT * FROM STUDENTS WHERE ROLLNO = {roll};")
+    cur.execute("SELECT * FROM STUDENTS WHERE ROLLNO = %s", [roll])
 
     studata = [i for i in cur]
     if len(studata) == 0:
@@ -22,7 +22,7 @@ def search(roll, mailch):
         for i in studata:
             print(i)
     print(f"{studata[0][5]} {studata[0][4]}")
-    con.close()
+    # con.close()
 
 # if input is 'y' or 'Y', then the user wants the email to be sent
     if mailch == 'y' or mailch == 'Y':

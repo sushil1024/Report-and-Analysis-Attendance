@@ -35,6 +35,11 @@ def login():
     return render_template("loginstaff.html")
 
 
+@app.route("/choice")
+def choice():
+    return render_template("choice.html")
+
+
 @app.route("/entry", methods=['GET', 'POST'])
 def entry():
     if request.method == 'POST':
@@ -69,6 +74,7 @@ def entry():
 # input page to input roll number of the candidate
 @app.route("/inputs", methods=['GET', 'POST'])
 def inputs():
+    data = ""
     if request.method == 'POST':
 
         # takes input here in post method
@@ -78,8 +84,12 @@ def inputs():
         # taken inputs will be passed to another function for further process
         from searchdata import search
         search(studentrollno, mailch)
+        cur.execute("SELECT * FROM STUDENTS WHERE ROLLNO = %s", [studentrollno])
+        data = cur.fetchall()
+        # return render_template("example.html", value=data)
+        # con.close()
 
-    return render_template("input.html")
+    return render_template("input.html", value=data)
 
 
 if __name__ == "__main__":
