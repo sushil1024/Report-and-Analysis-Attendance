@@ -28,41 +28,41 @@
             Email the data?(y/n) = <input type="text" name="mailch" required/> <br><br>
             <input type="submit" name="Submit" value="Submit"/>
         </form>
-        <iframe src="/results" width="1200" height="200">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Roll No</th>
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>Country</th>
-                        <th>City</th>
-                        <th>Contact No</th>
-                        <th>Age</th>
-                        <th>DOB</th>
-                        <th>Email Id</th>
-                        <th>Attendance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for row in value %}
-                        <tr>
-                            <td>{{row[0][0]}}</td>
-                            <td>{{row[0][1]}}</td>
-                            <td>{{row[0][2]}}</td>
-                            <td>{{row[0][3]}}</td>
-                            <td>{{row[0][4]}}</td>
-                            <td>{{row[0][5]}}</td>
-                            <td>{{row[0][6]}}</td>
-                            <td>{{row[0][7]}}</td>
-                            <td>{{row[0][8]}}</td>
-                            <td>{{row[0][9]}}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </iframe>
+<!--        <iframe src="/results" width="1200" height="200">-->
+<!--            <table>-->
+<!--                <thead>-->
+<!--                    <tr>-->
+<!--                        <th>ID</th>-->
+<!--                        <th>Roll No</th>-->
+<!--                        <th>Name</th>-->
+<!--                        <th>Gender</th>-->
+<!--                        <th>Country</th>-->
+<!--                        <th>City</th>-->
+<!--                        <th>Contact No</th>-->
+<!--                        <th>Age</th>-->
+<!--                        <th>DOB</th>-->
+<!--                        <th>Email Id</th>-->
+<!--                        <th>Attendance</th>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                    {% for row in value %}-->
+<!--                        <tr>-->
+<!--                            <td>{{row[0][0]}}</td>-->
+<!--                            <td>{{row[0][1]}}</td>-->
+<!--                            <td>{{row[0][2]}}</td>-->
+<!--                            <td>{{row[0][3]}}</td>-->
+<!--                            <td>{{row[0][4]}}</td>-->
+<!--                            <td>{{row[0][5]}}</td>-->
+<!--                            <td>{{row[0][6]}}</td>-->
+<!--                            <td>{{row[0][7]}}</td>-->
+<!--                            <td>{{row[0][8]}}</td>-->
+<!--                            <td>{{row[0][9]}}</td>-->
+<!--                        </tr>-->
+<!--                    {% endfor %}-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </iframe>-->
         <br><br>
         <a href="/">Home</a>
     </center>
