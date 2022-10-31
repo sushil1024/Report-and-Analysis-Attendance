@@ -54,19 +54,6 @@ def entry():
         cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s FROM STUDENTS ORDER BY STUID DESC LIMIT 1;", (stuname, gender, country, city, contactno, age, emailid))
         con.commit()
 
-
-        # stuname = "sunil waghmare"
-        # gender = "male"
-        # country = "india"
-        # contactno = "1234567890"
-        # city = "mumbai"
-        # age = "53"
-        # dob = "1969-10-22"
-        # emailid = "sushilwaghmare2048@gmail.com"
-        #
-        # cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, DATE_FORMAT(%s, '%d %M %Y'), %s, 30 FROM STUDENTS ORDER BY STUID DESC LIMIT 1;", (stuname, gender, country, city, contactno, age, dob, emailid))
-        # con.commit()
-
     return render_template("entry.html")
 
 
@@ -89,6 +76,13 @@ def inputs():
         # con.close()
 
     return render_template("input.html", value=data)
+
+
+@app.route("/result")
+def result():
+    cur.execute("SELECT * FROM STUDENTS")
+    temp = cur.fetchall()
+    return render_template("result.html", temp=temp)
 
 
 if __name__ == "__main__":

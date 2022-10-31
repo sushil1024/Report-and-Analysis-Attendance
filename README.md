@@ -1,12 +1,12 @@
-# Attendance-Report-and-Analytics
+# Report-and-Analysis-Attendance
 
-Data will be stored in csv format, report will be generated on request and analysis will be showed in the report. The report will be mailed to the particular email id of the candidate.
+Data will be stored in database, report will be generated on request and analysis will be shown in the report. The report will be mailed to the particular email id of the candidate.
 
 # Installation
 
 - Clone this repository
 ```
-git clone https://github.com/sushil1024/Attendance-Report-and-Analytics
+git clone https://github.com/sushil1024/Report-and-Analysis-Attendance
 ```
 
 - Installation

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Contact No</th>
+                <th>Age</th>
+                <th>Email Id</th>
+                <th>Attendance</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            {% for row in temp: %}
+                <tr>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>{{ row[8] }}</td>
+                    <td>{{ row[9] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<!--    <table border="1" class="dataframe">-->
+<!--      <thead>-->
+<!--        <tr style="text-align: right;">-->
+<!--          <th></th>-->
+<!--          <th>Name</th>-->
+<!--          <th>Gender</th>-->
+<!--          <th>City</th>-->
+<!--          <th>Country</th>-->
+<!--          <th>Contact Number</th>-->
+<!--          <th>Age</th>-->
+<!--          <th>Email ID</th>-->
+<!--          <th>Lecture Attended Out of 60</th>-->
+<!--          <th>Roll Number</th>-->
+<!--        </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--        <tr>-->
+<!--          <th>3</th>-->
+<!--          <td>Sushil Waghmare</td>-->
+<!--          <td>male</td>-->
+<!--          <td>Mumbai</td>-->
+<!--          <td>India</td>-->
+<!--          <td>973-764-8808</td>-->
+<!--          <td>30</td>-->
+<!--          <td>sushilwaghmare2048@gmail.com</td>-->
+<!--          <td>14</td>-->
+<!--          <td>4</td>-->
+<!--        </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+</body>
+</html>
