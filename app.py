@@ -83,10 +83,10 @@ def inputs():
         search(studentrollno, mailch)
         cur.execute("SELECT * FROM STUDENTS WHERE ROLLNO = %s", [studentrollno])
         data = cur.fetchall()
-        # return render_template("example.html", value=data)
+        return render_template("resultone.html", value=data)
         # con.close()
 
-    return render_template("input.html", value=data)
+    return render_template("input.html")
 
 
 @app.route("/result")
