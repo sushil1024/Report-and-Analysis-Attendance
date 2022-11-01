@@ -53,8 +53,8 @@ def entry():
         stuname = request.form.get('stuname')
         gender = request.form.get('gender')
         country = request.form.get('country')
-        contactno = request.form.get('contactno')
         city = request.form.get('city')
+        contactno = request.form.get('contactno')
         age = request.form.get('age')
         emailid = request.form.get('emailid')
         attend = request.form.get('attend')
@@ -62,7 +62,7 @@ def entry():
         temp = [stuname, gender, country, contactno, city, age, emailid, attend]
         print(temp)
 
-        cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s FROM STUDENTS ORDER BY STUID DESC LIMIT 1", [stuname, gender, country, contactno, city, age, emailid, attend])
+        cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s FROM STUDENTS ORDER BY STUID DESC LIMIT 1", [stuname, gender, country, city, contactno, age, emailid, attend])
         con.commit()
 
     return render_template("entry.html")
