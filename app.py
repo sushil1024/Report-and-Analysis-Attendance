@@ -4,7 +4,7 @@
 # Author: Sushil Waghmare
 
 
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request
 import mysql.connector
 from datetime import datetime
 
@@ -19,6 +19,13 @@ con = mysql.connector.connect(
     host="bzczr0tdsxjv3b9xkz8l-mysql.services.clever-cloud.com",
     database="bzczr0tdsxjv3b9xkz8l",
 )
+
+# con = mysql.connector.connect(
+#     user="root",
+#     password="r00t",
+#     host="localhost",
+#     database="fynd"
+# )
 
 cur = con.cursor()
 
@@ -43,15 +50,19 @@ def choice():
 @app.route("/entry", methods=['GET', 'POST'])
 def entry():
     if request.method == 'POST':
-        stuname = request.form['stuname']
-        gender = request.form['gender']
-        country = request.form['country']
-        contactno = request.form['contactno']
-        city = request.form['city']
-        age = request.form['age']
-        emailid = request.form['emailid']
+        stuname = request.form.get('stuname')
+        gender = request.form.get('gender')
+        country = request.form.get('country')
+        contactno = request.form.get('contactno')
+        city = request.form.get('city')
+        age = request.form.get('age')
+        emailid = request.form.get('emailid')
+        attend = request.form.get('attend')
 
-        cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s FROM STUDENTS ORDER BY STUID DESC LIMIT 1;", (stuname, gender, country, city, contactno, age, emailid))
+        temp = [stuname, gender, country, contactno, city, age, emailid, attend]
+        print(temp)
+
+        cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s FROM STUDENTS ORDER BY STUID DESC LIMIT 1", [stuname, gender, country, contactno, city, age, emailid, attend])
         con.commit()
 
     return render_template("entry.html")
