@@ -6,7 +6,6 @@
 
 from flask import Flask, render_template, request
 import mysql.connector
-from datetime import datetime
 
 
 app = Flask(__name__)
@@ -20,6 +19,7 @@ con = mysql.connector.connect(
     database="bzczr0tdsxjv3b9xkz8l",
 )
 
+# used to test on local machine
 # con = mysql.connector.connect(
 #     user="root",
 #     password="r00t",
@@ -71,19 +71,24 @@ def entry():
 # input page to input roll number of the candidate
 @app.route("/inputs", methods=['GET', 'POST'])
 def inputs():
-    data = ""
     if request.method == 'POST':
 
         # takes input here in post method
         studentrollno = request.form['studentrollno']
         mailch = request.form['mailch']
 
-        # taken inputs will be passed to another function for further process
-        from searchdata import search
-        search(studentrollno, mailch)
         cur.execute("SELECT * FROM STUDENTS WHERE ROLLNO = %s", [studentrollno])
         data = cur.fetchall()
-        return render_template("resultone.html", value=data)
+
+
+        print(data)
+        if len(data) == 0:
+            return "<h1>Roll number not found!</h1>"
+        else:
+            # taken inputs will be passed to another function for further process
+            from searchdata import search
+            search(studentrollno, mailch)
+            return render_template("result.html", temp=data)
         # con.close()
 
     return render_template("input.html")
