@@ -4,8 +4,9 @@
 # Author: Sushil Waghmare
 
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 import mysql.connector
+import os
 
 
 app = Flask(__name__)
@@ -28,6 +29,11 @@ con = mysql.connector.connect(
 # )
 
 cur = con.cursor()
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
 
 
 # the home page
@@ -59,9 +65,6 @@ def entry():
         emailid = request.form.get('emailid')
         attend = request.form.get('attend')
 
-        temp = [stuname, gender, country, contactno, city, age, emailid, attend]
-        print(temp)
-
         cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s FROM STUDENTS ORDER BY STUID DESC LIMIT 1", [stuname, gender, country, city, contactno, age, emailid, attend])
         con.commit()
 
@@ -79,19 +82,39 @@ def inputs():
 
         cur.execute("SELECT * FROM STUDENTS WHERE ROLLNO = %s", [studentrollno])
         data = cur.fetchall()
-
-
         print(data)
+
         if len(data) == 0:
-            return "<h1>Roll number not found!</h1>"
+            return render_template("notfoundstu.html")
         else:
             # taken inputs will be passed to another function for further process
             from searchdata import search
             search(studentrollno, mailch)
-            return render_template("result.html", temp=data)
+            return render_template("resultone.html", temp=data)
         # con.close()
 
     return render_template("input.html")
+
+
+@app.route("/delroll", methods=['GET', 'POST'])
+def delroll():
+    if request.method == 'POST':
+        studentrollno = request.form['studentrollno']
+        cur.execute("SELECT * FROM STUDENTS WHERE ROLLNO = %s", [studentrollno])
+        data = cur.fetchall()
+        if len(data) == 0:
+            return render_template("notfound.html")
+        cur.execute("DELETE FROM STUDENTS WHERE ROLLNO = %s", [studentrollno])
+        con.commit()
+
+    return render_template("delroll.html")
+
+
+@app.route("/resultframe")
+def resultframe():
+    cur.execute("SELECT * FROM STUDENTS")
+    temp = cur.fetchall()
+    return render_template("resultframe.html", temp=temp)
 
 
 @app.route("/result")
