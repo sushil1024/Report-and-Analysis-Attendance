@@ -21,14 +21,16 @@
     </style>
 </head>
 <body>
+    {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+    {% endfor %}
     <center>
         <form action="/inputs" method="post">
             <br>
             Roll Number = <input type="number" name="studentrollno" required/> <br><br>
             Email the data?(y/n) = <input type="text" name="mailch"/> <br><br>
-            <input type="submit" name="Submit" value="Submit"/>
+            <input type="submit" name="Submit" value="Submit / Check"/>
         </form>
-<!--        <iframe src="/resultone" width="1200" height="300"></iframe>-->
         <br><br>
         <a href="/">Home</a>
     </center>

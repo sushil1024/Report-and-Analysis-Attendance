@@ -4,7 +4,7 @@
 # Author: Sushil Waghmare
 
 
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, flash
 import mysql.connector
 import os
 
@@ -53,6 +53,7 @@ def choice():
 # add a student
 @app.route("/entry", methods=['GET', 'POST'])
 def entry():
+    flash("")
     if request.method == 'POST':
         stuname = request.form.get('stuname')
         gender = request.form.get('gender')
@@ -63,9 +64,23 @@ def entry():
         emailid = request.form.get('emailid')
         attend = request.form.get('attend')
 
-        # inserting input to the database
-        cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s FROM STUDENTS ORDER BY STUID DESC LIMIT 1", [stuname, gender, country, city, contactno, age, emailid, attend])
-        con.commit()
+        # validation for emailid
+        cur.execute("SELECT * FROM STUDENTS WHERE EMAILID = %s", [emailid])
+        checkemail = cur.fetchall()
+
+        # validation for contact
+        cur.execute("SELECT * FROM STUDENTS WHERE CONTACTNO = %s", [contactno])
+        checkmob = cur.fetchall()
+
+        if len(checkemail) != 0 or len(checkmob) != 0:
+            flash("Email Id/Contact No. is already registered")
+
+        # if email id / contact no are not repeated
+        else:
+            # inserting input to the database
+            cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s FROM STUDENTS ORDER BY STUID DESC LIMIT 1", [stuname, gender, country, city, contactno, age, emailid, attend])
+            con.commit()
+            flash("Student added successfully")
 
     return render_template("entry.html")
 
@@ -75,7 +90,9 @@ def entry():
 def inputs():
     if request.method == 'POST':
 
-        # takes input here in post method
+        flash("")
+
+        # request for taken input
         studentrollno = request.form['studentrollno']
         mailch = request.form['mailch']
 
@@ -85,12 +102,19 @@ def inputs():
 
         # if entered data not found in database
         if len(data) == 0:
-            return render_template("notfoundstu.html")
+            flash("Roll Number not found!")
+
         else:
+
+            flash(f"Roll Number found!")
+
             # taken inputs will be passed to another function for further process
             from searchdata import search
             search(studentrollno, mailch)
-            return render_template("resultone.html", data=data)
+
+            # check if user opted for emailing the report
+            if mailch == 'y' or mailch == 'Y':
+                flash("Email sent")
 
     return render_template("input.html")
 
@@ -99,6 +123,9 @@ def inputs():
 @app.route("/delroll", methods=['GET', 'POST'])
 def delroll():
     if request.method == 'POST':
+
+        flash("")
+
         studentrollno = request.form['studentrollno']
 
         # look for the student with given roll number
@@ -107,9 +134,17 @@ def delroll():
 
         # if data not found
         if len(data) == 0:
-            return render_template("notfound.html")
-        cur.execute("DELETE FROM STUDENTS WHERE ROLLNO = %s", [studentrollno])
-        con.commit()
+            flash("Roll number not found!")
+
+        else:
+
+            flash("Roll number found!")
+
+            # deletion of record
+            cur.execute("DELETE FROM STUDENTS WHERE ROLLNO = %s", [studentrollno])
+            con.commit()
+
+            flash("Record deleted!")
 
     return render_template("delroll.html")
 

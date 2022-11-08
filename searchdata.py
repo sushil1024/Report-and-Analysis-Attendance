@@ -1,6 +1,7 @@
 import mysql.connector
 
 
+# database connection
 con = mysql.connector.connect(
     user="ueiforctqwwdmvnx",
     password="LDtM1YA1kKOzEfOeplHC",
@@ -8,6 +9,7 @@ con = mysql.connector.connect(
     database="bzczr0tdsxjv3b9xkz8l",
 )
 
+# db cursor
 cur = con.cursor()
 
 

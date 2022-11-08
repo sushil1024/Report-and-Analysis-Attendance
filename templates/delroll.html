@@ -5,6 +5,9 @@
     <title>Delete Student</title>
 </head>
 <body>
+    {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+    {% endfor %}
     <center>
         <form action="/delroll" method="post">
             <br>

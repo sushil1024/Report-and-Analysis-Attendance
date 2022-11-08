@@ -5,6 +5,9 @@
     <title>Add Student</title>
 </head>
 <body>
+    {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+    {% endfor %}
     <center>
         <fieldset>
         <form action="/entry" method="post">
@@ -24,8 +27,8 @@
         <label for="city">City:</label><br>
         <input type="text" name="city" id="city"><br><br>
 
-        <label for="contactno">Contact No:</label><br>
-        <input type="number" name="contactno" id="contactno"><br><br>
+        <label for="contactno">Contact No*:</label><br>
+        <input type="number" name="contactno" id="contactno" required><br><br>
 
         <label for="age">Age*:</label><br>
         <input type="number" name="age" id="age" placeholder="18" required><br><br>
