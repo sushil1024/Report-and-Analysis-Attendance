@@ -13,6 +13,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'sushil1024'
 
 
+# connection for mysql database
 con = mysql.connector.connect(
     user="ueiforctqwwdmvnx",
     password="LDtM1YA1kKOzEfOeplHC",
@@ -20,17 +21,12 @@ con = mysql.connector.connect(
     database="bzczr0tdsxjv3b9xkz8l",
 )
 
-# used to test on local machine
-# con = mysql.connector.connect(
-#     user="root",
-#     password="r00t",
-#     host="localhost",
-#     database="fynd"
-# )
 
+# database cursor
 cur = con.cursor()
 
 
+# the fav icon
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
@@ -48,11 +44,13 @@ def login():
     return render_template("loginstaff.html")
 
 
+# choice page for admin
 @app.route("/choice")
 def choice():
     return render_template("choice.html")
 
 
+# add a student
 @app.route("/entry", methods=['GET', 'POST'])
 def entry():
     if request.method == 'POST':
@@ -65,6 +63,7 @@ def entry():
         emailid = request.form.get('emailid')
         attend = request.form.get('attend')
 
+        # inserting input to the database
         cur.execute("INSERT INTO STUDENTS SELECT STUID+1, ROLLNO+1, %s, %s, %s, %s, %s, %s, %s, %s FROM STUDENTS ORDER BY STUID DESC LIMIT 1", [stuname, gender, country, city, contactno, age, emailid, attend])
         con.commit()
 
@@ -84,24 +83,29 @@ def inputs():
         data = cur.fetchall()
         print(data)
 
+        # if entered data not found in database
         if len(data) == 0:
             return render_template("notfoundstu.html")
         else:
             # taken inputs will be passed to another function for further process
             from searchdata import search
             search(studentrollno, mailch)
-            return render_template("resultone.html", temp=data)
-        # con.close()
+            return render_template("resultone.html", data=data)
 
     return render_template("input.html")
 
 
+# delete a student
 @app.route("/delroll", methods=['GET', 'POST'])
 def delroll():
     if request.method == 'POST':
         studentrollno = request.form['studentrollno']
+
+        # look for the student with given roll number
         cur.execute("SELECT * FROM STUDENTS WHERE ROLLNO = %s", [studentrollno])
         data = cur.fetchall()
+
+        # if data not found
         if len(data) == 0:
             return render_template("notfound.html")
         cur.execute("DELETE FROM STUDENTS WHERE ROLLNO = %s", [studentrollno])
@@ -110,6 +114,7 @@ def delroll():
     return render_template("delroll.html")
 
 
+# display all the data in a frame
 @app.route("/resultframe")
 def resultframe():
     cur.execute("SELECT * FROM STUDENTS")
@@ -117,6 +122,7 @@ def resultframe():
     return render_template("resultframe.html", temp=temp)
 
 
+# display all the data
 @app.route("/result")
 def result():
     cur.execute("SELECT * FROM STUDENTS")

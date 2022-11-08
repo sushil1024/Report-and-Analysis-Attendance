@@ -1,11 +1,5 @@
 import mysql.connector
 
-# con = mysql.connector.connect(
-#     user="root",
-#     password="r00t",
-#     host="localhost",
-#     database="fynd",
-# )
 
 con = mysql.connector.connect(
     user="ueiforctqwwdmvnx",
@@ -23,13 +17,6 @@ def search(roll, mailch):
     cur.execute("SELECT * FROM STUDENTS WHERE ROLLNO = %s", [roll])
 
     studata = [i for i in cur]
-    # if len(studata) == 0:
-    #     print("data not found")
-    # else:
-    #     for i in studata:
-    #         print(i)
-    # print(f"{studata[0][5]} {studata[0][4]}")
-    # con.close()
 
 # if input is 'y' or 'Y', then the user wants the email to be sent
     if mailch == 'y' or mailch == 'Y':
