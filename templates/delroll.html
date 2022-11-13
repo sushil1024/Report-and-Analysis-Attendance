@@ -4,20 +4,59 @@
     <meta charset="UTF-8">
     <title>Delete Student</title>
 </head>
-<body>
+<body class="page">
     {% for message in get_flashed_messages() %}
         <p>{{ message }}</p>
     {% endfor %}
     <center>
-        <form action="/delroll" method="post">
+        <form action="/delroll" method="post" class="name">
             <br>
-            Roll Number = <input type="number" name="studentrollno" required/> <br><br>
-            <input type="submit" name="Submit" value="Submit"/>
+            Roll Number = <input class="name" type="number" name="studentrollno" required/> <br><br>
+            <input class="button" type="submit" name="Submit" value="Submit"/>
         </form>
         <iframe src="/resultframe" width="1200" height="300"></iframe>
         <br><br>
-        <a href="/choice">Back to Menu</a> <br><br>
-        <a href="/">Home</a>
+        <a class="button" href="/choice">Back to Menu</a> <br><br>
+        <a class="home" href="/">Home</a>
     </center>
 </body>
+
+<style>
+    .page {
+        background-color: grey;
+    }
+
+    .name {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+    }
+
+
+    .button {
+        background-color: #008CBA;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+
+    .home {
+        background-color: green;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
 </html>

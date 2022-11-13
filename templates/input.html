@@ -3,36 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Input</title>
-    <style>
-        input[type=text], select, textarea {
-            width: 1%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-        }
-        input[type=number], select, textarea {
-            width: 10%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-        }
-    </style>
 </head>
-<body>
+<body class="page">
     {% for message in get_flashed_messages() %}
         <p>{{ message }}</p>
     {% endfor %}
     <center>
-        <form action="/inputs" method="post">
+        <form action="/inputs" method="post" class="name">
             <br>
-            Roll Number = <input type="number" name="studentrollno" required/> <br><br>
-            Email the data?(y/n) = <input type="text" name="mailch"/> <br><br>
-            <input type="submit" name="Submit" value="Submit / Check"/>
+            Roll Number = <input class="name" type="number" name="studentrollno" required/> <br><br>
+            Email the data?(y/n) = <input class="name" type="text" name="mailch"/> <br><br>
+            <input type="submit" name="Submit" value="Submit / Check" class="button" />
         </form>
         <br><br>
-        <a href="/">Home</a>
+        <a href="/" class="button">Home</a>
     </center>
     <h1>INSTRUCTIONS:</h1>
     <p>-The details about "Roll Number" and "Email the data?" should be submitted in the above boxes.</p>
@@ -41,4 +25,42 @@
     <p>-After clicking submit, a report pdf will be emailed to the candidate.</p>
     <p>-To view your data online, just enter your roll number and leave email choice blank then click submit.</p>
 </body>
+<style>
+    .page {
+        background-color: grey;
+    }
+
+    .name {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+    }
+
+    input[type=text], select, textarea {
+        width: 3%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+    input[type=number], select, textarea {
+        width: 10%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    .button {
+        background-color: #008CBA;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
 </html>

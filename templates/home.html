@@ -8,22 +8,48 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-<body>
-<!--    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">-->
+<body class="page">
     <center>
         <form action="/" method="get">
-            <h1>'Report and Analytics of Attendance'</h1>
+            <h1 class="head">'Report and Analysis of Attendance'</h1>
+            <br> <br>
             <div>
-                <a href="/inputs">
-                    <h2>I am a Student</h2>
-                </a>
+                <a href="/inputs" class="button">I am a Student</a>
             </div>
+            <br>
             <div>
-                <a href="/loginstaff">
-                    <h2>I am a Staff</h2>
-                </a>
+                <a href="/loginstaff" class="button">I am a Staff</a>
             </div>
         </form>
     </center>
 </body>
 </html>
+<style>
+
+    .page {
+        background-color: grey;
+    }
+
+    .button {
+        background-color: #008CBA;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .head {
+        border: none;
+        color: black;
+        padding: 15px 32px;
+        display: inline-block;
+        font-size: 40px;
+        margin: 4px 2px;
+    }
+
+</style>

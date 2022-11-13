@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>Add Student</title>
 </head>
-<body>
+<body class="page">
     {% for message in get_flashed_messages() %}
         <p>{{ message }}</p>
     {% endfor %}
     <center>
         <fieldset>
-        <form action="/entry" method="post">
+        <form action="/entry" method="post" class="name">
         <label for="stuname">Name*:</label><br>
-        <input type="text" id="stuname" name="stuname" placeholder="Rahul Singh" required><br><br>
+        <input class="name" type="text" id="stuname" name="stuname" placeholder="Rahul Singh" required><br><br>
 
         <legend>Gender*:</legend>
         <label for="male">Male</label>
@@ -22,29 +22,68 @@
         <br><br>
 
         <label for="country">Country:</label><br>
-        <input type="text" name="country" id="country"><br><br>
+        <input class="name" type="text" name="country" id="country"><br><br>
 
         <label for="city">City:</label><br>
-        <input type="text" name="city" id="city"><br><br>
+        <input class="name" type="text" name="city" id="city"><br><br>
 
         <label for="contactno">Contact No*:</label><br>
-        <input type="number" name="contactno" id="contactno" required><br><br>
+        <input class="name" type="number" name="contactno" id="contactno" required><br><br>
 
         <label for="age">Age*:</label><br>
-        <input type="number" name="age" id="age" placeholder="18" required><br><br>
+        <input class="name" type="number" name="age" id="age" placeholder="18" required><br><br>
 
         <label for="emailid">Email ID*:</label><br>
-        <input type="text" name="emailid" id="emailid" placeholder="example@example.com" required><br><br>
+        <input class="name" type="text" name="emailid" id="emailid" placeholder="example@example.com" required><br><br>
 
         <label for="attend">Attendance*:</label><br>
-        <input type="number" name="attend" id="attend" maxlength="90" required><br><br>
+        <input class="name" type="number" name="attend" id="attend" maxlength="90" required><br><br>
 
 
-        <input type="submit" value="Submit"><br><br>
+        <input class="button" type="submit" value="Submit"><br><br>
         </form>
         </fieldset> <br><br>
-        <a href="/choice">Back to Menu</a> <br><br>
-        <a href="/">Home</a>
+        <a class="button" href="/choice">Back to Menu</a> <br><br>
+        <a class="home" href="/">Home</a>
     </center>
 </body>
+
+<style>
+    .page {
+        background-color: grey;
+    }
+
+    .name {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+    }
+
+
+    .button {
+        background-color: #008CBA;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+
+    .home {
+        background-color: green;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
 </html>
