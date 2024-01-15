@@ -8,7 +8,7 @@ import os
 # function to send email
 def sendmail(emailid, stuname):
     # credentials of sender
-    yag = yagmail.SMTP("sushilwaghmaresmtp@gmail.com", "bqmujehzaimkizwi")
+    yag = yagmail.SMTP("emailid", "password")
 
     # details of the email
     yag.send(
