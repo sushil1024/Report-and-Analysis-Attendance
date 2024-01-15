@@ -1,10 +1,10 @@
 import mysql.connector
 
 con = mysql.connector.connect(
-    user="ueiforctqwwdmvnx",
-    password="LDtM1YA1kKOzEfOeplHC",
-    host="bzczr0tdsxjv3b9xkz8l-mysql.services.clever-cloud.com",
-    database="bzczr0tdsxjv3b9xkz8l",
+    user="abcd1234",
+    password="password1234",
+    host="dev.host.com",
+    database="database1234",
 )
 
 cur = con.cursor()
